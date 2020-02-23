@@ -50,45 +50,13 @@ class NewOrder {
 		} else if (totalToppings === 4) {
 			total += 8;
 		}
-		// switch (totalToppings) {
-		// 	case totalToppings === 1:
-		// 		total += 2;
-		// 		console.log('inside 1 topping case', total);
-		// 		break;
-		// 	case totalToppings === 2:
-		// 		total += 3;
-		// 		break;
-		// 	case totalToppings === 3:
-		// 		total += 4;
-		// 		break;
-		// 	case totalToppings === 4:
-		// 		total += 5;
-		// 		break;
-		// 	case totalToppings === 0:
-		// 		break;
-		// }
 	}
-
-	// withdrawal(amount) {
-	// 	if (amount > 0) {
-	// 		if (amount <= this.balance) {
-	// 			this.balance -= amount;
-	// 			this.history += `<h4>${this.timeStamp()}</h4> <p>Withdrawn: $${amount}, Balance: $${this.balance}<p>`;
-	// 			return true;
-	// 		} else {
-	// 			alert(`Withdraw error: ${amount} exceeds current funds!`);
-	// 			return false;
-	// 		}
-	// 	} else {
-	// 		return false;
-	// 	}
-	// }
 }
 
 // UI Logic
 $(document).ready(function() {
 	$('#order').submit(function() {
-		total = 0;
+		total = 7;
 		event.preventDefault();
 		const userName = $('#name').val();
 		pizzaSize = $('#pizza-size').val();
