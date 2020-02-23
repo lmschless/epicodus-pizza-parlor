@@ -4,6 +4,7 @@ let toppings = [];
 let newOrder;
 let orders = [];
 let total;
+let pizzaSize;
 
 class NewOrder {
 	constructor(pizzaSize, toppings) {
@@ -18,7 +19,12 @@ class NewOrder {
 		return new Date();
 	}
 
-	getTotal() {
+	totalToppings() {
+		if (this.toppings === 1) {
+			return (this.total += 1.99);
+		}
+	}
+	sizePricing(pizzaSize) {
 		if (this.toppings === 1) {
 			return (this.total += 1.99);
 		}
@@ -45,7 +51,7 @@ $(document).ready(function() {
 	$('#order').submit(function() {
 		event.preventDefault();
 		const userName = $('#name').val();
-		const pizzaSize = $('#pizza-size').val();
+		var pizzaSize = $('#pizza-size').val();
 		const currentToppings = $('#toppings').val();
 		var numberNotChecked = $('input:checkbox:not(":checked")').length;
 		console.log(numberNotChecked);
