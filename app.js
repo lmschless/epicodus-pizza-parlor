@@ -100,5 +100,8 @@ $(document).ready(function() {
 		newOrder.sizePricing();
 		orders.push(newOrder);
 		$('#current-total').val(total);
+		$('#history').append(
+			`<h4>${userName} ordered a ${pizzaSize} pizza with ${totalToppings} toppings for a total of $${total}. </h4> <p>${newOrder.timeStamp()}</p>`
+		);
 	});
 });
