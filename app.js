@@ -8,9 +8,9 @@ let pizzaSize;
 let totalToppings;
 
 class NewOrder {
-	constructor(pizzaSize, toppings) {
+	constructor() {
 		this.pizzaSize = pizzaSize;
-		this.toppings = [];
+		this.totalToppings = totalToppings;
 		this.orderNumber = orderNumber++;
 		this.total = 0;
 		this.history = '';
@@ -28,6 +28,7 @@ class NewOrder {
 				break;
 			case 'Small':
 				total += 3;
+				console.log('inside small case');
 				break;
 			case 'Medium':
 				total += 4;
@@ -37,7 +38,7 @@ class NewOrder {
 				break;
 		}
 	}
-	totalToppings() {
+	toppingsPricing() {
 		switch (totalToppings) {
 			case totalToppings === 1:
 				total += 2;
@@ -79,13 +80,13 @@ $(document).ready(function() {
 		event.preventDefault();
 		const userName = $('#name').val();
 		pizzaSize = $('#pizza-size').val();
-		const currentToppings = $('#toppings').val();
-		totalToppings = 4 - $('input:checkbox:not(":checked")').length;
-		console.log(userName, pizzaSize, currentToppings);
-		newOrder = new NewOrder(pizzaSize, toppings);
+		totalToppings = parseInt(4 - $('input:checkbox:not(":checked")').length);
+		newOrder = new NewOrder();
+		console.log(userName, pizzaSize, totalToppings);
+
+		newOrder.toppingsPricing();
 		newOrder.sizePricing();
-		newOrder.totalToppings();
 		orders.push(newOrder);
-		$('#current-total').val(newOrder.total);
+		$('#current-total').val(total);
 	});
 });
