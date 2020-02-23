@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet">
+    <link href="index.css" rel="stylesheet" type="text/css">
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="app.js"></script>
+    <title>Pizza Parlor</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome to Luke's Pizzeria</h1>
+      <div class="row">
+        <div class="col-md-6">
+          <hr>
+          <form id="order">
+            <h2>Fill out the form below to order a pizza!</h2>
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" class="form-control" id="name">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Select Pizza Size</label>
+              <select class="form-control" id="pizza-size">
+                <option>Personal</option>
+                <option>Small</option>
+                <option>Medium</option>
+                <option>Large</option>
+              </select>
+            </div>
+            <div class="form-group" id="toppings">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox"
+                  id="inlineCheckbox1" value="pepperoni">
+                <label class="form-check-label" for="inlineCheckbox1">Pepperoni</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox"
+                  id="inlineCheckbox2" value="chicken">
+                <label class="form-check-label" for="inlineCheckbox2">Chicken</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox"
+                  id="inlineCheckbox2" value="green-pepper">
+                <label class="form-check-label" for="inlineCheckbox2">Green
+                  Pepper</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox"
+                  id="inlineCheckbox2" value="pineapple">
+                <label class="form-check-label" for="inlineCheckbox2">Pineapple</label>
+              </div>
+
+              <button type="submit" class="btn-primary">Create new Account!</button>
+              <div id="balance">
+                <br>
+
+                <label for="current-total">Current Total</label>
+                <input type="text" id="current-total">
+                <br>
+                <h3>Transaction History:</h3>
+                <br>
+                <div id="history"></div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <hr>
+      </div>
+
+    </body>
+  </html>
