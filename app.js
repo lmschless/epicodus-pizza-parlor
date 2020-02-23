@@ -1,8 +1,9 @@
 // Business logic
 let orderNumber = 0;
 let toppings = [];
+let newOrder;
 let orders = [];
-let total = 4;
+let total = 0;
 let pizzaSize;
 let totalToppings;
 
@@ -21,40 +22,51 @@ class NewOrder {
 
 	sizePricing() {
 		switch (pizzaSize) {
-			case 'Personal':
-				total += 2;
+			case 'Personal + ($3)':
+				total += 3;
 				console.log('inside personal case');
 				break;
-			case 'Small':
-				total += 3;
+			case 'Small + ($4)':
+				total += 4;
 				console.log('inside small case');
 				break;
-			case 'Medium':
-				total += 4;
-				break;
-			case 'Large':
+			case 'Medium + ($5)':
 				total += 5;
+				console.log('inside medium case', total);
+				break;
+			case 'Large + ($6)':
+				total += 6;
 				break;
 		}
 	}
 	toppingsPricing() {
-		switch (totalToppings) {
-			case totalToppings === 1:
-				total += 2;
-				console.log('inside 1 topping case', total);
-				break;
-			case totalToppings === 2:
-				total += 3;
-				break;
-			case totalToppings === 3:
-				total += 4;
-				break;
-			case totalToppings === 4:
-				total += 5;
-				break;
-			case totalToppings === 0:
-				break;
+		if (totalToppings === 1) {
+			console.log('inside totaltoppings = 1');
+			total += 2;
+		} else if (totalToppings === 2) {
+			total += 4;
+		} else if (totalToppings === 3) {
+			total += 6;
+		} else if (totalToppings === 4) {
+			total += 8;
 		}
+		// switch (totalToppings) {
+		// 	case totalToppings === 1:
+		// 		total += 2;
+		// 		console.log('inside 1 topping case', total);
+		// 		break;
+		// 	case totalToppings === 2:
+		// 		total += 3;
+		// 		break;
+		// 	case totalToppings === 3:
+		// 		total += 4;
+		// 		break;
+		// 	case totalToppings === 4:
+		// 		total += 5;
+		// 		break;
+		// 	case totalToppings === 0:
+		// 		break;
+		// }
 	}
 
 	// withdrawal(amount) {
@@ -76,19 +88,17 @@ class NewOrder {
 // UI Logic
 $(document).ready(function() {
 	$('#order').submit(function() {
-		total = 4;
+		total = 0;
 		event.preventDefault();
 		const userName = $('#name').val();
 		pizzaSize = $('#pizza-size').val();
-		totalToppings = parseInt(4 - $('input:checkbox:not(":checked")').length);
-
-		const newOrder = new NewOrder(total);
-		newOrder.sizePricing();
-
+		totalToppings = 4 - $('input:checkbox:not(":checked")').length;
+		newOrder = new NewOrder();
 		console.log(userName, pizzaSize, totalToppings, total);
 
-		// newOrder.toppingsPricing();
-		// orders.push(newOrder);
+		newOrder.toppingsPricing();
+		newOrder.sizePricing();
+		orders.push(newOrder);
 		$('#current-total').val(total);
 	});
 });
