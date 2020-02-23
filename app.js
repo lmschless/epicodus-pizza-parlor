@@ -3,7 +3,7 @@ let orderNumber = 0;
 let toppings = [];
 let newOrder;
 let orders = [];
-let total;
+let total = 0;
 let pizzaSize;
 let totalToppings;
 
@@ -42,7 +42,7 @@ class NewOrder {
 		switch (totalToppings) {
 			case totalToppings === 1:
 				total += 2;
-				console.log('inside 1 topping case');
+				console.log('inside 1 topping case', total);
 				break;
 			case totalToppings === 2:
 				total += 3;
@@ -77,12 +77,13 @@ class NewOrder {
 // UI Logic
 $(document).ready(function() {
 	$('#order').submit(function() {
+		total = 0;
 		event.preventDefault();
 		const userName = $('#name').val();
 		pizzaSize = $('#pizza-size').val();
 		totalToppings = parseInt(4 - $('input:checkbox:not(":checked")').length);
 		newOrder = new NewOrder();
-		console.log(userName, pizzaSize, totalToppings);
+		console.log(userName, pizzaSize, totalToppings, total);
 
 		newOrder.toppingsPricing();
 		newOrder.sizePricing();
