@@ -15,47 +15,49 @@
     <title>Pizza Parlor</title>
   </head>
   <body>
-    <div class="container">
+    <div id="container">
       <h1>Welcome to Luke's Pizzeria</h1>
-      <div class="row">
-        <div class="col-md-6">
+      <div>
+        <div">
           <hr>
           <form id="order">
             <h2>Fill out the form below to order a pizza!</h2>
-            <div class="form-group">
+            <div class="form-group sizing">
               <label for="name">Your Name</label>
               <input type="text" class="form-control" id="name">
             </div>
-            <div class="form-group">
+            <div class="form-group sizing">
               <label for="exampleFormControlSelect1">Select Pizza Size</label>
               <select class="form-control" id="pizza-size">
-                <option>Personal</option>
-                <option>Small</option>
-                <option>Medium</option>
-                <option>Large</option>
+                <option>Personal + ($3)</option>
+                <option>Small + ($4)</option>
+                <option>Medium + ($5)</option>
+                <option>Large + ($6)</option>
               </select>
             </div>
             <div class="form-group" id="toppings">
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox"
                   id="inlineCheckbox1" value="pepperoni">
-                <label class="form-check-label" for="inlineCheckbox1">Pepperoni</label>
+                <label class="form-check-label" for="inlineCheckbox1">Pepperoni
+                  $2</label>
               </div>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox"
                   id="inlineCheckbox2" value="chicken">
-                <label class="form-check-label" for="inlineCheckbox2">Chicken</label>
+                <label class="form-check-label" for="inlineCheckbox2">Chicken $2</label>
               </div>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox"
                   id="inlineCheckbox2" value="green-pepper">
                 <label class="form-check-label" for="inlineCheckbox2">Green
-                  Pepper</label>
+                  Pepper $2</label>
               </div>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox"
                   id="inlineCheckbox2" value="pineapple">
-                <label class="form-check-label" for="inlineCheckbox2">Pineapple</label>
+                <label class="form-check-label" for="inlineCheckbox2">Pineapple
+                  $2</label>
               </div>
 
               <button type="submit" class="btn-primary">Calculate total</button>

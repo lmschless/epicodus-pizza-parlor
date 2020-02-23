@@ -1,4 +1,21 @@
+html {
+	height: 100%;
+}
+
 body {
 	font-family: 'Italiana';
 	background-color: salmon;
+}
+
+#container {
+	align-items: center;
+	text-align: center;
+	max-width: 50vw;
+	margin-left: 22vw;
+	margin-top: 4vh;
+}
+
+.sizing {
+	max-width: 40%;
+	margin-left: 15vw;
 }

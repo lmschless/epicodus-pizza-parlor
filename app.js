@@ -1,9 +1,8 @@
 // Business logic
 let orderNumber = 0;
 let toppings = [];
-let newOrder;
 let orders = [];
-let total = 0;
+let total = 4;
 let pizzaSize;
 let totalToppings;
 
@@ -77,17 +76,19 @@ class NewOrder {
 // UI Logic
 $(document).ready(function() {
 	$('#order').submit(function() {
-		total = 0;
+		total = 4;
 		event.preventDefault();
 		const userName = $('#name').val();
 		pizzaSize = $('#pizza-size').val();
 		totalToppings = parseInt(4 - $('input:checkbox:not(":checked")').length);
-		newOrder = new NewOrder();
+
+		const newOrder = new NewOrder(total);
+		newOrder.sizePricing();
+
 		console.log(userName, pizzaSize, totalToppings, total);
 
-		newOrder.toppingsPricing();
-		newOrder.sizePricing();
-		orders.push(newOrder);
+		// newOrder.toppingsPricing();
+		// orders.push(newOrder);
 		$('#current-total').val(total);
 	});
 });
