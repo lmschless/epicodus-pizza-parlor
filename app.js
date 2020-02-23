@@ -1,6 +1,5 @@
 // Business logic
 let orderNumber = 0;
-let toppings = [];
 let newOrder;
 let orders = [];
 let total = 0;
@@ -15,7 +14,7 @@ class NewOrder {
 		this.total = 0;
 		this.history = '';
 	}
-
+	// used for the transaction history timestamp
 	timeStamp() {
 		return new Date();
 	}
@@ -24,24 +23,21 @@ class NewOrder {
 		switch (pizzaSize) {
 			case 'Personal + ($3)':
 				total += 3;
-				console.log('inside personal case');
 				break;
 			case 'Small + ($4)':
 				total += 4;
-				console.log('inside small case');
 				break;
 			case 'Medium + ($5)':
 				total += 5;
-				console.log('inside medium case', total);
 				break;
 			case 'Large + ($6)':
 				total += 6;
 				break;
 		}
 	}
+	// tried to use a switch statement here but couldn't get it to work
 	toppingsPricing() {
 		if (totalToppings === 1) {
-			console.log('inside totaltoppings = 1');
 			total += 2;
 		} else if (totalToppings === 2) {
 			total += 4;
@@ -56,17 +52,20 @@ class NewOrder {
 // UI Logic
 $(document).ready(function() {
 	$('#order').submit(function() {
+		// base pizza price is $7
 		total = 7;
 		event.preventDefault();
 		const userName = $('#name').val();
 		pizzaSize = $('#pizza-size').val();
 		totalToppings = 4 - $('input:checkbox:not(":checked")').length;
-		// newOrder = new NewOrder();
+
+		// Create new order using a constructor.
 		newOrder = new NewOrder(pizzaSize, totalToppings);
 		console.log(userName, pizzaSize, totalToppings, total);
-
+		// calls both class methods.
 		newOrder.toppingsPricing();
 		newOrder.sizePricing();
+
 		orders.push(newOrder);
 		$('#current-total').val(`$${total}`);
 		$('#history').append(
