@@ -8,7 +8,7 @@ let pizzaSize;
 let totalToppings;
 
 class NewOrder {
-	constructor() {
+	constructor(pizzaSize, totalToppings) {
 		this.pizzaSize = pizzaSize;
 		this.totalToppings = totalToppings;
 		this.orderNumber = orderNumber++;
@@ -93,13 +93,14 @@ $(document).ready(function() {
 		const userName = $('#name').val();
 		pizzaSize = $('#pizza-size').val();
 		totalToppings = 4 - $('input:checkbox:not(":checked")').length;
-		newOrder = new NewOrder();
+		// newOrder = new NewOrder();
+		newOrder = new NewOrder(pizzaSize, totalToppings);
 		console.log(userName, pizzaSize, totalToppings, total);
 
 		newOrder.toppingsPricing();
 		newOrder.sizePricing();
 		orders.push(newOrder);
-		$('#current-total').val(total);
+		$('#current-total').val(`$${total}`);
 		$('#history').append(
 			`<h4>${userName} ordered a ${pizzaSize} pizza with ${totalToppings} toppings for a total of $${total}. </h4> <p>${newOrder.timeStamp()}</p>`
 		);
