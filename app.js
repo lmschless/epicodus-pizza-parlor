@@ -1,8 +1,6 @@
 // Business logic
 let orderNumber = 0;
-let newOrder;
 const orders = [];
-let total = 0;
 let pizzaSize;
 let totalToppings;
 
@@ -11,9 +9,8 @@ class NewOrder {
 		this.pizzaSize = pizzaSize;
 		this.totalToppings = totalToppings;
 		this.orderNumber = orderNumber++;
-		this.total = 7;
 		this.history = '';
-		this.orderTotal = 0;
+		this.orderTotal = 7;
 	}
 	// used for the transaction history timestamp
 	timeStamp() {
@@ -36,21 +33,21 @@ class NewOrder {
 				sizePrice += 6;
 				break;
 		}
-		this.orderTotal = sizePrice + this.total;
+		this.orderTotal = sizePrice + this.orderTotal;
 		return this.orderTotal;
 	}
 	// tried to use a switch statement here but couldn't get it to work
 	toppingsPricing() {
 		if (totalToppings === 1) {
-			this.total += 2;
+			this.orderTotal += 2;
 		} else if (totalToppings === 2) {
-			this.total += 4;
+			this.orderTotal += 4;
 		} else if (totalToppings === 3) {
-			this.total += 6;
+			this.orderTotal += 6;
 		} else if (totalToppings === 4) {
-			this.total += 8;
+			this.orderTotal += 8;
 		}
-		return this.total;
+		return this.orderTotal;
 	}
 }
 
@@ -73,7 +70,7 @@ $(document).ready(function() {
 		orders.push(newOrder);
 		$('#current-total').val(`$${newOrder.sizePricing()}`);
 		$('#history').append(
-			`<h4>${userName} ordered a ${pizzaSize} pizza with ${totalToppings} toppings for a total of $${total}. </h4> <p>${newOrder.timeStamp()}</p>`
+			`<h4>${userName} ordered a ${pizzaSize} pizza with ${totalToppings} toppings for a total of $${newOrder.orderTotal}. </h4> <p>${newOrder.timeStamp()}</p>`
 		);
 	});
 });
