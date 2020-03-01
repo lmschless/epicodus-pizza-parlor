@@ -22,20 +22,22 @@ class NewOrder {
 	}
 
 	sizePricing() {
-		switch (pizzaSize) {
+		switch (this.sizePrice) {
 			case 'Personal + ($3)':
-				total += 3;
+				this.sizePrice += 3;
 				break;
 			case 'Small + ($4)':
-				total += 4;
+				this.sizePrice;
 				break;
 			case 'Medium + ($5)':
-				total += 5;
+				this.sizePrice;
 				break;
 			case 'Large + ($6)':
-				total += 6;
+				this.sizePrice;
 				break;
 		}
+		this.orderTotal = this.sizePrice + this.total;
+		return this.orderTotal;
 	}
 	// tried to use a switch statement here but couldn't get it to work
 	toppingsPricing() {
@@ -69,7 +71,7 @@ $(document).ready(function() {
 		newOrder.sizePricing();
 
 		orders.push(newOrder);
-		$('#current-total').val(`$${total}`);
+		$('#current-total').val(`$${this.orderTotal}`);
 		$('#history').append(
 			`<h4>${userName} ordered a ${pizzaSize} pizza with ${totalToppings} toppings for a total of $${total}. </h4> <p>${newOrder.timeStamp()}</p>`
 		);
