@@ -1,7 +1,7 @@
 // Business logic
 let orderNumber = 0;
 let newOrder;
-let orders = [];
+const orders = [];
 let total = 0;
 let pizzaSize;
 let totalToppings;
