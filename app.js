@@ -11,9 +11,8 @@ class NewOrder {
 		this.pizzaSize = pizzaSize;
 		this.totalToppings = totalToppings;
 		this.orderNumber = orderNumber++;
-		this.total = 0;
+		this.total = 7;
 		this.history = '';
-		this.sizePrice = 0;
 		this.orderTotal = 0;
 	}
 	// used for the transaction history timestamp
@@ -22,34 +21,36 @@ class NewOrder {
 	}
 
 	sizePricing() {
-		switch (this.sizePrice) {
+		let sizePrice = 0;
+		switch (pizzaSize) {
 			case 'Personal + ($3)':
-				this.sizePrice += 3;
+				sizePrice += 3;
 				break;
 			case 'Small + ($4)':
-				this.sizePrice;
+				sizePrice += 4;
 				break;
 			case 'Medium + ($5)':
-				this.sizePrice;
+				sizePrice += 5;
 				break;
 			case 'Large + ($6)':
-				this.sizePrice;
+				sizePrice += 6;
 				break;
 		}
-		this.orderTotal = this.sizePrice + this.total;
+		this.orderTotal = sizePrice + this.total;
 		return this.orderTotal;
 	}
 	// tried to use a switch statement here but couldn't get it to work
 	toppingsPricing() {
 		if (totalToppings === 1) {
-			total += 2;
+			this.total += 2;
 		} else if (totalToppings === 2) {
-			total += 4;
+			this.total += 4;
 		} else if (totalToppings === 3) {
-			total += 6;
+			this.total += 6;
 		} else if (totalToppings === 4) {
-			total += 8;
+			this.total += 8;
 		}
+		return this.total;
 	}
 }
 
@@ -57,7 +58,6 @@ class NewOrder {
 $(document).ready(function() {
 	$('#order').submit(function() {
 		// base pizza price is $7
-		total = 7;
 		event.preventDefault();
 		const userName = $('#name').val();
 		pizzaSize = $('#pizza-size').val();
@@ -65,13 +65,13 @@ $(document).ready(function() {
 
 		// Create new order using a constructor.
 		newOrder = new NewOrder(pizzaSize, totalToppings);
-		console.log(userName, pizzaSize, totalToppings, total);
+		console.log(userName, pizzaSize, totalToppings, `${newOrder.orderTotal}`);
 		// calls both class methods.
 		newOrder.toppingsPricing();
 		newOrder.sizePricing();
 
 		orders.push(newOrder);
-		$('#current-total').val(`$${this.orderTotal}`);
+		$('#current-total').val(`$${newOrder.sizePricing()}`);
 		$('#history').append(
 			`<h4>${userName} ordered a ${pizzaSize} pizza with ${totalToppings} toppings for a total of $${total}. </h4> <p>${newOrder.timeStamp()}</p>`
 		);
