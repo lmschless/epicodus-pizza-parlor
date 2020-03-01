@@ -13,6 +13,8 @@ class NewOrder {
 		this.orderNumber = orderNumber++;
 		this.total = 0;
 		this.history = '';
+		this.sizePrice = 0;
+		this.orderTotal = 0;
 	}
 	// used for the transaction history timestamp
 	timeStamp() {
