@@ -1,8 +1,6 @@
 // Business logic
 let orderNumber = 0;
 const orders = [];
-let pizzaSize;
-let totalToppings;
 
 class NewOrder {
 	constructor(pizzaSize, totalToppings) {
@@ -18,26 +16,19 @@ class NewOrder {
 	}
 
 	sizePricing() {
-		let sizePrice = 0;
 		switch (pizzaSize) {
 			case 'Personal + ($3)':
-				sizePrice += 3;
-				break;
+				return this.orderTotal + 3;
 			case 'Small + ($4)':
-				sizePrice += 4;
-				break;
+				return this.orderTotal + 4;
 			case 'Medium + ($5)':
-				sizePrice += 5;
-				break;
+				return this.orderTotal + 5;
 			case 'Large + ($6)':
-				sizePrice += 6;
-				break;
+				return this.orderTotal + 6;
 		}
-		this.orderTotal = sizePrice + this.orderTotal;
-		return this.orderTotal;
 	}
 	// tried to use a switch statement here but couldn't get it to work
-	toppingsPricing() {
+	toppingsPricing(totalToppings) {
 		if (totalToppings === 1) {
 			this.orderTotal += 2;
 		} else if (totalToppings === 2) {
@@ -58,13 +49,14 @@ $(document).ready(function() {
 		event.preventDefault();
 		const userName = $('#name').val();
 		pizzaSize = $('#pizza-size').val();
-		totalToppings = 4 - $('input:checkbox:not(":checked")').length;
+		const totalToppings = 4 - $('input:checkbox:not(":checked")').length;
 
 		// Create new order using a constructor.
 		newOrder = new NewOrder(pizzaSize, totalToppings);
 		console.log(userName, pizzaSize, totalToppings, `${newOrder.orderTotal}`);
 		// calls both class methods.
-		newOrder.toppingsPricing();
+		// Pass in totalToppings to eliminate the global variable.
+		newOrder.toppingsPricing(totalToppings);
 		newOrder.sizePricing();
 
 		orders.push(newOrder);
